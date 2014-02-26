@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset=utf-8>
+  <title>Circular Migration Plot</title>
+  <script src="dist/circular-migration-plot.js"></script>
+  <style>
+    body {
+      font: 15px/1.8em Arial, sans-serif;
+      margin: 0;
+      text-align: center;
+    }
+    svg {
+      font-size: 12px;
+      max-width: 100%;
+      vector-effect: non-scaling-stroke;
+    }
+    .info, .label {
+      pointer-events: none;
+    }
+    .info text {
+      fill: white;
+    }
+    #circle circle {
+      fill: none;
+      pointer-events: all;
+    }
+    text {
+      cursor: default;
+      fill: #333;
+    }
+    .group-arc + text {
+      -webkit-transition: opacity 0.4s;
+      -moz-transition: opacity 0.4s;
+      -o-transition: opacity 0.4s;
+      transition: opacity 0.4s;
+    }
+    .group-arc.animate + text {
+      opacity: 0;
+    }
+    #circle path {
+      -webkit-transition: opacity 0.4s;
+      -moz-transition: opacity 0.4s;
+      -o-transition: opacity 0.4s;
+      transition: opacity 0.4s;
+    }
+    #circle:hover path.fade,
+    #circle path.unselected {
+      opacity: 0;
+      pointer-events: none;
+    }
+    text.fade {
+      opacity: 0;
+    }
+    .group-arc {
+      cursor: pointer;
+    }
+    text.region {
+      font-weight: bold;
+    }
+    .chord {
+      opacity: 0.75;
+    }
+    .chord:hover {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <h1>Circular Migration Plot</h1>
+  <div id=timeline></div>
+  <div id=chart></div>
+  <script>
+    CircularMigrationPlot({
+      data: 'sample.json',
+      chart: '#chart',
+      timeline: '#timeline'
+    });
+  </script>
+</body>
+</html>

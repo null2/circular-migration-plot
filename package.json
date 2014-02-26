@@ -1,0 +1,46 @@
+{
+  "name": "circular-migration-plot",
+  "version": "1.0.0",
+  "description": "Creating interactive circular migration plots for the web using D3.",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap test/*.js",
+    "jshint": "jshint -c .jshintrc index.js bin/*.js test/*.js",
+    "browserify": "mkdir -p dist && browserify index.js -s CircularMigrationPlot -o dist/circular-migration-plot.js",
+    "uglifyjs": "uglifyjs dist/circular-migration-plot.js -mc > dist/circular-migration-plot.min.js",
+    "build": "npm run browserify && npm run uglifyjs",
+    "start": "http-server"
+  },
+  "bin": {
+    "cmp-filter": "bin/filter.js",
+    "cmp-compile": "bin/compile.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/null2/circular-migration-plot.git"
+  },
+  "keywords": [
+    "d3",
+    "migration",
+    "plot"
+  ],
+  "author": "Johannes J. Schmidt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/null2/circular-migration-plot/issues"
+  },
+  "homepage": "https://github.com/null2/circular-migration-plot",
+  "devDependencies": {
+    "jshint": "^2.4.4",
+    "tap": "^0.4.8",
+    "browserify": "^3.31.2",
+    "uglify-js": "^2.4.12",
+    "http-server": "^0.6.1",
+    "d3": "^3.4.2"
+  },
+  "dependencies": {
+    "binary-csv": "^0.1.7",
+    "highland": "^1.16.1",
+    "underscore": "^1.6.0"
+  }
+}
