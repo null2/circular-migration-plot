@@ -8,7 +8,7 @@ npm install circular-migration-plot -g
 ```
 
 ## Usage
-### 1. Filtration
+### 1. Filtration (optional)
 You may want to filter countries with small migration flows:
 ```shell
 cmp-filter data/countries.csv data/flows.csv
