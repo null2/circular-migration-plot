@@ -69,5 +69,5 @@ npm start
 
 License
 -------
-Copyright (c) 2014 null2 GmbH Berlin  
-Licensed under the MIT license.
+Copyright (c) 2014 null2 GmbH Berlin 
+This work as well as the sample data is licensed under a [Creative Commons Attribution-NonCommercial 3.0 Unported License](http://creativecommons.org/licenses/by-nc/3.0/).
