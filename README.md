@@ -1,5 +1,6 @@
 # Circular Migration Plot
-Creating interactive circular migration plots for the web using D3.
+Creating interactive circular migration plots for the web using D3,
+like http://www.global-migration.info/
 
 ## Installation
 Install globally with npm:
