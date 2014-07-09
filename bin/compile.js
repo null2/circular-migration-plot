@@ -6,19 +6,27 @@
 //   cmp-compile flows.csv
 //   cmp-compile -
 //   cat flows.csv | cmp-compile
+//   cmp-compile flows.csv --regions North,West
+//   cmp-compile flows.csv --regions North,West --pretty
 
 
 var fs = require('fs');
 var _ = require('highland');
 var __ = require('underscore');
 var parser = require('binary-csv');
+var parseArgs = require('minimist');
+
 var parseOptions = { json: true };
-var usage = 'Usage:\n  cmp-compile flow.csv';
-
-
-// Region sort order
-var sortedRegions = ['North America', 'Africa', 'Europe', 'Fmr Soviet Union', 'West Asia', 'South Asia', 'East Asia', 'South-East Asia', 'Oceania', 'Latin America'];
-
+var usage = 'Usage: cmp-compile file [OPTIONS]\n\nAvailable Options:\n\n  --regions, -r  Sort order for regions\n   --pretty, -p  Pretty print result JSON';
+var argv = parseArgs(process.argv.slice(2), {
+  alias: {
+    r: 'regions',
+    p: 'pretty'
+  },
+  boolean: 'pretty'
+});
+var pretty = argv.pretty;
+var sortedRegions = argv.regions && argv.regions.split(/\s*,\s*/);
 
 
 // Input CSV has the form:
@@ -28,7 +36,7 @@ var sortedRegions = ['North America', 'Africa', 'Europe', 'Fmr Soviet Union', 'W
 //   1,North America,1,North America,57617,191071,84668,96102,,CAN,Canada,USA,United States,1509,190436,238,28,1,1
 //
 // Note that the header row is not included in the output!
-var inputCsvFilename = process.argv[2];
+var inputCsvFilename = argv._[0];
 try {
   var input = (!process.stdin.isTTY || inputCsvFilename === '-') ? process.stdin : fs.createReadStream(inputCsvFilename);
 } catch(e) {
@@ -135,8 +143,9 @@ function label(data) {
 }
 
 open(input).reduce(data, condense).map(label).each(function(json) {
-  // TODO: support -p --pretty flag:
-  // console.log(JSON.stringify(json, '', '  '));
-
-  console.log(JSON.stringify(json));
+  if (pretty) {
+    console.log(JSON.stringify(json, '', '  '));
+  } else {
+    console.log(JSON.stringify(json));
+  }
 });

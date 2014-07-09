@@ -16,9 +16,22 @@ cmp-filter data/countries.csv data/flows.csv
 ```
 
 ### 2. Compilation
-Build the matrix json processible by the library out of the csv input file:
+Build the matrix json processible by the library out of the csv input file.
+
+#### Usage
+`cmp-compile file [OPTIONS]`
+
+#### Available Options
+* `--regions`, `-r`: Sort order for regions
+* `--pretty`, `-p`:  Pretty print result JSON
+
+#### Examples
 ```shell
-cmp-compile data/flows.csv
+cmp-compile flows.csv
+cmp-compile -
+cat flows.csv | cmp-compile
+cmp-compile flows.csv --regions North,West
+cmp-compile flows.csv --regions North,West --pretty
 ```
 
 ### 3. Integration
