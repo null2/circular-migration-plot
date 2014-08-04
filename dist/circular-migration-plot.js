@@ -1214,6 +1214,7 @@ module.exports = function(diagram, config) {
   config = config || {};
   config.element = config.element || 'body';
   config.now = config.now || years[0];
+  config.formatter = config.formatter || function(d) { return d };
 
   var form = d3.select(config.element).append('form');
 
@@ -1240,7 +1241,7 @@ module.exports = function(diagram, config) {
 
   span.append('label')
     .attr('for', function(d) { return 'year-' + d; })
-    .text(function(d) { return ""+d+"–" + (d+5); });
+    .text(config.formatter);
 
   // keyboard control
   d3.select(document.body).on('keypress', function() {

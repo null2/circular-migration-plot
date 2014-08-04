@@ -80,7 +80,12 @@
     CircularMigrationPlot({
       data: 'sample.json',
       chart: '#chart',
-      timeline: '#timeline'
+      timeline: {
+        element: '#timeline',
+        formatter: function(d) {
+          return d + '–' + (d + 5)
+        }
+      }
     });
   </script>
 </body>
